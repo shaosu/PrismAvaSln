@@ -43,7 +43,7 @@
         Theme="{DynamicResource CardBorder}">
       <u:NavMenu 
           Name="menu"   
-          ExpandWidth="300" IsHorizontalCollapsed="True"
+          ExpandWidth="300" IsHorizontalCollapsed="False"
           HeaderBinding="{Binding .}"
           IconBinding="{Binding IconIndex}"
           CommandBinding="{Binding NavigationCommand}" 

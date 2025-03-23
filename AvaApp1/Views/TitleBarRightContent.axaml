@@ -13,7 +13,7 @@
   <Grid   FlowDirection="LeftToRight"  ColumnDefinitions="Auto,*,Auto,Auto,Auto">
     <TextBlock IsHitTestVisible="False"    HorizontalAlignment="Left" Text=""></TextBlock>
     
-    <Label   Grid.Column="1"  HorizontalContentAlignment="Center"
+    <Label   Grid.Column="1" VerticalAlignment="Center" HorizontalContentAlignment="Center"
            IsHitTestVisible="False" Classes="Danger" Content="{Binding Title}" >  </Label>
 
     <Button Grid.Column="2"   Classes="Success"  Theme="{DynamicResource BorderlessButton}" Click="OpenDrawer">
