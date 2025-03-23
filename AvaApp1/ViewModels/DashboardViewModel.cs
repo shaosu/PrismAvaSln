@@ -23,15 +23,10 @@ namespace AvaApp1.ViewModels
         private int _listItemSelected = -1;
         private ObservableCollection<string> _listItems = new();
         private string _listItemText = string.Empty;
-        private ThemeVariant _themeSelected = ThemeVariant.Default;
-
+ 
         public DashboardViewModel(INotificationService notifyService)
         {
             _notification = notifyService;
-
-#pragma warning disable CS8601 // Possible null reference assignment.
-            ThemeSelected = Application.Current!.RequestedThemeVariant;
-#pragma warning restore CS8601 // Possible null reference assignment.
         }
 
         public DelegateCommand CmdAddItem => new(() =>
@@ -48,10 +43,9 @@ namespace AvaApp1.ViewModels
         public DelegateCommand CmdClearItems => new(ListItems.Clear);
         public DelegateCommand CmdNotification => new(async () =>
         {
-            // _notification.Show("Hello Prism!", "Notification Pop-up Message.",);
             var options = new DialogOptions()
             {
-                Title = "ASDSAD",
+                Title = "Test Dialog",
                 Mode = DialogMode.Info,
                 Button = DialogButton.OK,
                 ShowInTaskBar = true,
@@ -73,7 +67,6 @@ namespace AvaApp1.ViewModels
             });
         });
 
-
         public int ListItemSelected
         {
             get => _listItemSelected;
@@ -91,23 +84,6 @@ namespace AvaApp1.ViewModels
         public string ListItemText { get => _listItemText; set => SetProperty(ref _listItemText, value); }
 
         public ObservableCollection<string> ListItems { get => _listItems; set => SetProperty(ref _listItems, value); }
-
-        public ThemeVariant ThemeSelected
-        {
-            get => _themeSelected;
-            set
-            {
-                SetProperty(ref _themeSelected, value);
-                Application.Current!.RequestedThemeVariant = _themeSelected;
-            }
-        }
-
-        public List<ThemeVariant> ThemeStyles => new()
-        {
-            ThemeVariant.Default,
-            ThemeVariant.Dark,
-            ThemeVariant.Light,
-        };
 
         public AsyncDelegateCommand ShowCodeCommand => new AsyncDelegateCommand(ShowCodeCommand_Sub);
         private async Task ShowCodeCommand_Sub()

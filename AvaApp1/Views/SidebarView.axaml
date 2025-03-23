@@ -4,61 +4,102 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:vm="clr-namespace:AvaApp1.ViewModels;assembly=AvaApp1"
-             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="150"
-             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:converters="clr-namespace:AvaApp1.Converters"
+             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="350"
              x:Class="AvaApp1.Views.SidebarView"
              x:CompileBindings="True"
-             x:DataType="vm:SidebarViewModel"
-             Width="{Binding FlyoutWidth}">
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             x:DataType="vm:SidebarViewModel" 
+            >
+ 
+  <UserControl.Resources>
+    <converters:IconNameToPathConverter x:Key="IconConverter" />
+  </UserControl.Resources>
+  
   <UserControl.Styles>
     <Style Selector="Button">
       <Setter Property="HorizontalAlignment" Value="Stretch" />
     </Style>
 
     <Style Selector="PathIcon">
-      <Setter Property="Margin" Value="0,0,10,0" />
+      <!--<Setter Property="Margin" Value="0,0,10,0" />-->
+    </Style>
+    <Style Selector="Grid.Blur">
+      <Setter Property="Effect" Value="blur(10)"></Setter>
     </Style>
   </UserControl.Styles>
 
-  <DockPanel>
+  <Grid
+       HorizontalAlignment="Left"
+       ColumnDefinitions="Auto, Auto,*"
+       Classes.Blur="{Binding $parent[u:UrsaWindow].(u:OverlayDialogHost.IsInModalStatus)}"
+       RowDefinitions="Auto,*">
+    <Border
+        Grid.Row="1"
+        Grid.Column="0"
+        Padding="0"
+        HorizontalAlignment="Left"
+        Theme="{DynamicResource CardBorder}">
+      <u:NavMenu 
+          Name="menu"   
+          ExpandWidth="300" IsHorizontalCollapsed="True"
+          HeaderBinding="{Binding .}"
+          IconBinding="{Binding IconIndex}"
+          CommandBinding="{Binding NavigationCommand}" 
+          ItemsSource="{Binding MenuItems}"
+          SelectedItem="{Binding SelectedMenuItem}" 
+          SubMenuBinding="{Binding Children}">
+        <u:NavMenu.Styles>
+          <Style x:DataType="vm:MenuItem" Selector="u|NavMenuItem">
+            <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />
+          </Style>
+        </u:NavMenu.Styles>
+        <u:NavMenu.IconTemplate>
+          <DataTemplate DataType="{x:Type x:Int32}">
+            <u:TwoTonePathIcon
+                Width="16"
+                Height="16"
+                ActiveForeground="{DynamicResource SemiBlue5}"
+                ActiveStrokeBrush="{DynamicResource SemiBlue5}"
+                Data="{Binding Converter={StaticResource IconConverter}}"
+                Foreground="{DynamicResource SemiGrey5}"
+                IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"
+                StrokeBrush="{DynamicResource SemiGrey5}" />
+          </DataTemplate>
+        </u:NavMenu.IconTemplate>
+        <u:NavMenu.HeaderTemplate>
+          <DataTemplate x:DataType="vm:MenuItem">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock HorizontalAlignment="Left" Text="{Binding Header}" />
+              <u:Badge
+                  Margin="8,0,0,0"
+                  HorizontalAlignment="Left"
+                  IsVisible="{Binding Status, Converter={x:Static ObjectConverters.IsNotNull}}"
+                  Header="{Binding Status}"/>
+            </StackPanel>
+          </DataTemplate>
+        </u:NavMenu.HeaderTemplate>
+        <u:NavMenu.Header>
+          <Grid HorizontalAlignment="Center" ColumnDefinitions="Auto, Auto">
+            <Image
+                Width="40"
+                Height="40"
+                Margin="4,4"
+                u:NavMenu.CanToggle="True"
+                RenderOptions.BitmapInterpolationMode="HighQuality"
+                Source="../Assets/logo.ico" />
+            <TextBlock
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Classes="H5"
+                IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
+                Text="AvaApp1"
+                Theme="{DynamicResource TitleTextBlock}" />
+          </Grid>
+        </u:NavMenu.Header>
+      </u:NavMenu>
+    </Border>  
+  </Grid>
 
-    <!-- Dock the hamburger menu button to the top with no text -->
-    <Button DockPanel.Dock="Top"
-            Command="{Binding CmdFlyoutMenu}"
-            ToolTip.Tip="Expand/Collapse"
-            Height="25">
-      <StackPanel Orientation="Horizontal">
-        <PathIcon Data="{StaticResource line_horizontal_3_regular}" />
-        <TextBlock Text="" />
-      </StackPanel>
-    </Button>
-
-    <!-- Dock the Settings button to the bottom -->
-    <Button DockPanel.Dock="Bottom" Command="{Binding CmdSettings}" ToolTip.Tip="Settings">
-      <StackPanel Orientation="Horizontal">
-        <PathIcon Data="{StaticResource settings_regular}" />
-        <TextBlock Text="Navigation Sample" />
-      </StackPanel>
-    </Button>
-
-    <ScrollViewer>
-      <StackPanel>
-        <Button Command="{Binding CmdDashboard}" ToolTip.Tip="Dashboard">
-          <StackPanel Orientation="Horizontal">
-            <PathIcon Data="{StaticResource home_regular}" />
-            <TextBlock Text="Dashboard" />
-          </StackPanel>
-        </Button>
-
-        <!-- Place additional buttons here... -->
-        <Button Command="{Binding .}" ToolTip.Tip="Dashboard">
-          <StackPanel Orientation="Horizontal">
-            <PathIcon Data="{StaticResource lock_regular}" />
-            <TextBlock Text="Something Else" />
-          </StackPanel>
-        </Button>
-
-      </StackPanel>
-    </ScrollViewer>
-  </DockPanel>
 </UserControl>

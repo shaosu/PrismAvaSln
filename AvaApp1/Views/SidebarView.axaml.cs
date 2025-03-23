@@ -1,4 +1,6 @@
+using AvaApp1.ViewModels;
 using Avalonia.Controls;
+using Ursa.Controls;
 
 namespace AvaApp1.Views
 {
@@ -7,6 +9,7 @@ namespace AvaApp1.Views
         public SidebarView()
         {
             InitializeComponent();
+           // NavMenu nav;
         }
     }
 }

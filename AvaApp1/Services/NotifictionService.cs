@@ -24,7 +24,7 @@ namespace AvaApp1.Services
             {
                 Position = NotificationPosition.TopRight,
                 MaxItems = 4,
-                Margin = new Thickness(0, 0, 0, 0)
+                Margin = new Thickness(0, 20, 0, 0)
             };
 
             _notificationManager = notificationManager;

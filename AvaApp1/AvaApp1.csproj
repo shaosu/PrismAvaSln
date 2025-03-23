@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
+    <Folder Include="Converters\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,5 +30,9 @@
     <PackageReference Include="Semi.Avalonia" Version="11.2.1.5" />
     <PackageReference Include="TextMateSharp.Grammars" Version="1.0.66" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call  MyCpoy.bat" />
+  </Target>
 
 </Project>

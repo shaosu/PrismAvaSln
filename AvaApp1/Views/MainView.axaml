@@ -1,0 +1,68 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+            xmlns:core="clr-namespace:AvaApp1;assembly=AvaApp1"
+            xmlns:u="https://irihi.tech/ursa"
+            xmlns:prism="http://prismlibrary.com/"
+            xmlns:views="clr-namespace:AvaApp1.Views;assembly=AvaApp1"
+            xmlns:vm="clr-namespace:AvaApp1.ViewModels;assembly=AvaApp1"
+             x:DataType="vm:MainViewViewModel"
+             x:Class="AvaApp1.Views.MainView">
+
+  <Border  Theme="{DynamicResource CardBorder}" Margin="0,0,0,-10">
+    <Grid RowDefinitions="*,150,Auto" ColumnDefinitions="Auto,*" >
+      <!-- Sidebar -->
+      <Border Grid.Row="0" Grid.Column="0">
+
+        <!--
+          The SidebarView is not using a region on purpose, so it shows in designer mode
+          <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SidebarRegion}" />
+        -->
+        <views:SidebarView />
+      </Border>
+
+      <!-- Main Content -->
+      <ContentControl Grid.Row="0"
+                      Grid.Column="1"
+                      prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />
+
+      <!-- Footer -->
+      <Border Grid.Row="1"
+             Grid.Column="0"
+             Grid.ColumnSpan="2" >
+        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FooterRegion}" />
+      </Border>
+
+      <GridSplitter Grid.Row="1" Grid.ColumnSpan="2"
+                    VerticalAlignment="Top"    HorizontalAlignment="Stretch" />
+
+      <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" >
+        <StackPanel Orientation="Horizontal" Spacing="2" Margin="0">
+          <TextBlock Text="User Name: " FontWeight="Bold" />
+          <TextBlock Text="PrismAvalonia!" FontStyle="Italic" />
+
+          <TextBlock Text="Status:" FontWeight="Bold" />
+          <TextBlock Text="Disconnected" />
+
+          <TextBlock Text="Connection Id: " FontWeight="Bold" />
+          <TextBlock Text="0x07CC" FontStyle="Italic" />
+        </StackPanel>
+      </Border>
+
+      <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
+            Grid.ColumnSpan="1" ClipToBounds="True">
+        <Border
+            BorderBrush="{DynamicResource SemiGrey1}"
+            BorderThickness="0"
+            ClipToBounds="True"
+            CornerRadius="20">
+          <u:OverlayDialogHost HostId="LocalHost"/>
+        </Border>
+      </Grid>
+    </Grid>
+  </Border>
+
+  
+</UserControl>

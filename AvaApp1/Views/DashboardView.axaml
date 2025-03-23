@@ -29,18 +29,6 @@
       <Button Content="Add Item" Command="{Binding CmdAddItem}" />
       <Button Content="Clear" Command="{Binding CmdClearItems}" />
       <Button Content="Notification Pop-up" Command="{Binding CmdNotification}" />
-
-      <ComboBox VerticalAlignment="Center"
-                HorizontalAlignment="Stretch"
-                ItemsSource="{Binding ThemeStyles}"
-                SelectedItem="{Binding ThemeSelected}">
-        <!--SelectedIndex="{Binding ThemeSelectedIndex}" >-->
-        <ComboBox.ItemTemplate>
-          <DataTemplate x:DataType="x:String">
-            <TextBlock Text="{Binding TargetNullValue=Unset}" />
-          </DataTemplate>
-        </ComboBox.ItemTemplate>
-      </ComboBox>
     </StackPanel>
 
     <StackPanel Grid.Row="2" Orientation="Horizontal">
@@ -71,16 +59,6 @@
         </DataTemplate>
       </ListBox.ItemTemplate>
     </ListBox>
-
-    <Grid Grid.Row="0" Grid.RowSpan="4" Grid.Column="0"  Grid.ColumnSpan="2" ClipToBounds="True">
-      <Border
-          BorderBrush="{DynamicResource SemiGrey1}"
-          BorderThickness="0"
-          ClipToBounds="True"
-          CornerRadius="20">
-        <u:OverlayDialogHost HostId="LocalHost"/>
-      </Border>
-    </Grid>
-    
+ 
   </Grid>
 </UserControl>

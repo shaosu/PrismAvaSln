@@ -44,6 +44,8 @@ namespace AvaApp1
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
             containerRegistry.RegisterForNavigation<SettingsSubView, SettingsSubViewModel>();
 
+            containerRegistry.RegisterForNavigation<TitleBarRightContent, TitleBarRightContentViewModel>();
+
             // Dialogs, etc.
         }
 

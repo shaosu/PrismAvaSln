@@ -23,4 +23,11 @@ public class CodeDialogViewModel : DialogVMBase
         CS = "F:\\Program\\VS2022SW\\WPF\\WPFSln\\AvaApp1\\Dialogs\\CodeDialog.axaml.cs";
         VM = "F:\\Program\\VS2022SW\\WPF\\WPFSln\\AvaApp1\\Dialogs\\DialogVMBase.cs";
     }
+
+    public CodeDialogViewModel(string ViewName)
+    {
+        AXAML = $"src\\Views\\{ViewName}.axaml";
+        CS = $"src\\Views\\{ViewName}.axaml.cs";
+        VM = $"src\\ViewModels\\{ViewName}Model.cs";
+    }
 }
