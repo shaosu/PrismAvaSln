@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <!-- 定义公共的依赖库版本 -->
+    <!-- <NewtonsoftJsonVersion>13.0.1</NewtonsoftJsonVersion>  -->
+    <AvaloniaVersion>11.2.5</AvaloniaVersion>
+    <AvaloniaDesktopVersion>11.2.5</AvaloniaDesktopVersion>
+    <CommunityToolkitVersion>8.4.0</CommunityToolkitVersion>
+    <MSLogging>9.0.2</MSLogging>
+    <MSOptions>9.0.2</MSOptions>
+    <MSDotNetCoreVersion>9.0.2</MSDotNetCoreVersion>
+    <MSDependencyInjection>9.0.2</MSDependencyInjection>
+    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 定义公共的 NuGet 包引用 -->
+     <!-- <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />  -->
+  </ItemGroup>
+</Project>

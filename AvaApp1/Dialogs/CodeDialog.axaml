@@ -1,0 +1,31 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:AvaloniaEdit="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
+             x:Class="AvaApp1.CodeDialog">
+  <UserControl.Styles>
+    <Style Selector="AvaloniaEdit|TextEditor">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="IsReadOnly" Value="True" />
+      <Setter Property="ShowLineNumbers" Value="True" />
+      <Setter Property="FontFamily" Value="Cascadia Code,Consolas,Menlo,Monospace" />
+    </Style>
+
+  </UserControl.Styles>
+  <ScrollViewer Theme="{DynamicResource StaticScrollViewer}"  HorizontalScrollBarVisibility="Visible">
+  <TabControl  MinWidth="500">
+    <TabItem Header="AXAML">
+      <AvaloniaEdit:TextEditor Text="Hello AvaloniaEdit!" x:Name="edit_AXAML"/>
+    </TabItem>
+    <TabItem Header="C#">
+      <AvaloniaEdit:TextEditor Text="int A=0;" x:Name="edit_CS"/>
+    </TabItem>
+    <TabItem Header="VM">
+      <AvaloniaEdit:TextEditor Text="Hello" x:Name="edit_VM"/>
+    </TabItem>
+  </TabControl>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,17 @@
+﻿<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaApp1.App"
+             xmlns:local="using:AvaApp1"
+             xmlns:semi="https://irihi.tech/semi"
+             xmlns:u-semi="https://irihi.tech/ursa/themes/semi"
+             RequestedThemeVariant="Default">
+  <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+  <Application.Styles>
+    <FluentTheme />
+    <semi:SemiTheme Locale="zh-CN" />
+    <u-semi:SemiTheme Locale="zh-CN"/>
+    <!-- Custom SVG glyphs -->
+    <StyleInclude Source="avares://AvaApp1/Styles/Icons.axaml" />
+    <StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+  </Application.Styles>
+</Application>
