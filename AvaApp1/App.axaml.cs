@@ -43,6 +43,7 @@ namespace AvaApp1
             containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
             containerRegistry.RegisterForNavigation<SettingsSubView, SettingsSubViewModel>();
+            containerRegistry.RegisterForNavigation<LightBeltViewer, LightBeltViewerViewModel>();
 
             containerRegistry.RegisterForNavigation<TitleBarRightContent, TitleBarRightContentViewModel>();
 

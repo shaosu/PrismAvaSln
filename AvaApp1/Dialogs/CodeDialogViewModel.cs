@@ -28,6 +28,14 @@ public class CodeDialogViewModel : DialogVMBase
     {
         AXAML = $"src\\Views\\{ViewName}.axaml";
         CS = $"src\\Views\\{ViewName}.axaml.cs";
-        VM = $"src\\ViewModels\\{ViewName}Model.cs";
+        if (ViewName.EndsWith("View"))
+        {
+            VM = $"src\\ViewModels\\{ViewName}Model.cs";
+        }
+        else
+        {
+            VM = $"src\\ViewModels\\{ViewName}ViewModel.cs";
+        }
+           
     }
 }

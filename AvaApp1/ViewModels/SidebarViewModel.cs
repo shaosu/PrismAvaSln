@@ -44,7 +44,7 @@ namespace AvaApp1.ViewModels
                 new MenuItem { Header = "Controls", IsSeparator = true},
                 new RegionMenuItem { Header = "Dashboard"  ,RegionName=nameof(DashboardView), NavigationCommand=NavigationCommand},
                 new RegionMenuItem { Header = "Settings", RegionName= nameof(SettingsView) ,NavigationCommand=NavigationCommand },
-                new RegionMenuItem { Header = "ButtonGroup" , Status="New"},
+                new RegionMenuItem { Header = "ButtonGroup" ,RegionName= nameof(LightBeltViewer),NavigationCommand=NavigationCommand  , Status="New"},
             };
         }
         private MenuItem? _selectedMenuItem;

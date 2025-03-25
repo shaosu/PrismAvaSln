@@ -1,0 +1,18 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:converters="clr-namespace:AvaApp1.Converters"
+			 xmlns:uc="clr-namespace:AvaApp1.Controls;assembly=AvaApp1"
+			 x:DataType="uc:RGBLamp"
+             x:Class="AvaApp1.Controls.RGBLamp">
+	<UserControl.Resources>
+		<converters:RGBColorConverter x:Key="RGBColorConverter" />
+	</UserControl.Resources>
+	<StackPanel  Orientation="Vertical">
+		<Ellipse  x:Name="color" Width="50" Height="50" Stroke="Black" StrokeThickness="2"  />
+		<Label IsVisible="False" x:Name="txt"></Label>
+	</StackPanel>
+
+</UserControl>

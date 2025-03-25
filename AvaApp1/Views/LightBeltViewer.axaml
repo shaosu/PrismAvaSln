@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			  xmlns:uc="clr-namespace:AvaApp1.Controls;assembly=AvaApp1"
+			  xmlns:converters="clr-namespace:AvaApp1.Converters"
+			 xmlns:vm="clr-namespace:AvaApp1.ViewModels;assembly=AvaApp1"
+			 xmlns:model="clr-namespace:AvaApp1.Models;assembly=AvaApp1"
+			  x:DataType="vm:LightBeltViewerViewModel"
+             x:Class="AvaApp1.LightBeltViewer">
+	<UserControl.Resources>
+		<converters:RGBColorConverter x:Key="RGBColorConverter" />
+	</UserControl.Resources>
+	<StackPanel Orientation="Vertical" >
+		<uc:RGBLamp   x:Name="color1" ></uc:RGBLamp>
+		<Ellipse  IsVisible="False" Fill="{Binding  C1,Converter={StaticResource RGBColorConverter}}" Width="50" Height="50" Stroke="Black" StrokeThickness="2"  />
+		<ItemsControl ItemsSource="{Binding LightBeltItems}"   >
+			<ItemsControl.ItemTemplate>
+				<DataTemplate DataType="vm:RGBColorPack" >
+					<StackPanel Orientation="Vertical">
+						<Ellipse Fill="{Binding C1 ,Converter={StaticResource RGBColorConverter}}"
+								 Width="50" Height="50" Stroke="Black" StrokeThickness="2"  />
+					</StackPanel>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+	</StackPanel>
+
+
+</UserControl>
