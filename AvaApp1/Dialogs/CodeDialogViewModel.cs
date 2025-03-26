@@ -1,3 +1,5 @@
+using System;
+
 namespace AvaApp1;
 
 public class CodeDialogViewModel : DialogVMBase
@@ -6,6 +8,14 @@ public class CodeDialogViewModel : DialogVMBase
     public string CS { get; set; }
     public string VM { get; set; }
 
+    public int GetFileNameHashCode()
+    {
+        var hash = new HashCode();
+        hash.Add(AXAML);
+        hash.Add(CS);
+        hash.Add(VM);
+        return hash.ToHashCode();
+    }
     public string LoadFile(string file)
     {
         try
@@ -36,6 +46,6 @@ public class CodeDialogViewModel : DialogVMBase
         {
             VM = $"src\\ViewModels\\{ViewName}ViewModel.cs";
         }
-           
+
     }
 }

@@ -14,6 +14,7 @@ namespace AvaApp1
 {
     public partial class App : PrismApplication
     {
+
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
@@ -21,11 +22,28 @@ namespace AvaApp1
             // Required when overriding Initialize
             base.Initialize();
         }
-
         protected override AvaloniaObject CreateShell()
         {
             Debug.WriteLine("CreateShell()");
-            return Container.Resolve<MainWindow>();
+            var it = Container.Resolve<MainWindow>();
+            var top = TopLevel.GetTopLevel(it);
+            IContainerRegistry Registry = (IContainerRegistry)this.Container;
+            Registry.RegisterInstance<TopLevel?>(top);
+
+            //IContainerProvider pyd = this.Container;
+            //IContainerRegistry reg = (IContainerRegistry)pyd;
+            //DryIoc.IContainer con1 = (DryIoc.IContainer)pyd;// 失败
+            //DryIoc.IContainer con2 = (DryIoc.IContainer)reg;// 失败
+            //DryIoc.IContainer con3 = pyd.GetContainer();
+            //DryIoc.IContainer con4 = reg.GetContainer();
+
+            return it;
+        }
+
+        public override void OnFrameworkInitializationCompleted()
+        {
+
+            base.OnFrameworkInitializationCompleted();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -38,6 +56,8 @@ namespace AvaApp1
 
             // Services
             containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
+
+
 
             // Views - Region Navigation
             containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
